@@ -36,7 +36,7 @@ app.use("/api", productRoute);
 app.use("/api", cartRoute);
 app.use("/api", initialData);
 app.get('/',(req,res)=>{
-    res.send("from me ameer hamza")
+    res.send("from me  hamza")
 })
 
 const Port = process.env.PORT || 2000;
