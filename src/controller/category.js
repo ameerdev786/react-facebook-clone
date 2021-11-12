@@ -9,7 +9,7 @@ const Category = require("../model/category");
         sku: slug(req.body.name)
       };
       if (req.file ) {
-        categoryObj.categoryImage= "http://localhost:2000/public/" + req.file.filename
+        categoryObj.categoryImage= "https://adminapinode.herokuapp.com/public/" + req.file.filename
       }
 
       if (req.body.parentId) {
