@@ -1,7 +1,7 @@
 const express=require('express');
 const router= express.Router();
 const { requireSignin,adminMiddleaware} = require('../common-middleware');
-const {createProduct}=require('../controller/product');
+const {createProduct,deleteProductById}=require('../controller/product');
 const shortId=require('shortid');
 const path=require('path');
 const multer=require('multer');
@@ -20,5 +20,5 @@ const storage = multer.diskStorage({
   
 
 router.post('/product/create',requireSignin,adminMiddleaware,upload.array('productPicture'),createProduct)
-// router.get('/category/getcategory',getCategories)
+router.delete( "/product/deleteProductById",requireSignin, adminMiddleaware, deleteProductById);
 module.exports=router;

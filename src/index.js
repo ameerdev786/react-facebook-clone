@@ -34,8 +34,8 @@ app.use("/api", authRoute);
 app.use("/api", adminAuthRoute);
 app.use("/api", productRoute);
 app.use("/api", cartRoute);
-app.use("/api", initialData);
-app.get('/',(req,res)=>{
+app.use("/api", initialData);    
+app.get('/',(req,res)=>{ 
     res.send("from me  hamza")
 })
 

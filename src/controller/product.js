@@ -34,3 +34,19 @@ exports.createProduct=(req,res)=>{
     // res.status(200).json({file:req.files,body:req.body}) 
  
  }
+
+
+ //// delete product
+ exports.deleteProductById = (req, res) => {
+    const { productId } = req.body.payload;
+    if (productId) {
+      Product.deleteOne({ _id: productId }).exec((error, result) => {
+        if (error) return res.status(400).json({ error });
+        if (result) {
+          res.status(202).json({ result });
+        }
+      });
+    } else {
+      res.status(400).json({ error: "Params required" });
+    }
+  }

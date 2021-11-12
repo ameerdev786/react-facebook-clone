@@ -37,7 +37,8 @@ const Category = require("../model/category");
           sku: cat.sku,
           category: getWithchilds(categories, cat._id),
           all: categories._id,
-          img:cat.categoryImage
+          img:cat.categoryImage,
+          parentId:cat.parentId
         });
       }
       return categoryList;
@@ -51,3 +52,37 @@ const Category = require("../model/category");
         }
       });
     };
+
+    /// update categories for admin .
+    exports.updateCategory=async(req,res)=>{
+      const {_id,name,parentId,type}= req.body;
+      const updatedCategories=[]
+       if( name instanceof Array){
+         for (let i=0; i<name.length; i++){
+          const category= {
+             name:name[i],
+           type:type[i]
+           }
+
+           if( patrentId){
+             category.parentId=parentId[i]
+           }
+
+           const updatedCategory= await Category.findOneAndUpdate({_id},category,{new:true})
+           updatedCategories.push(updatedCategory)
+           return res.status(201).json({ updatedCategories})
+
+         }
+       }else{
+           const category= {
+              name:name,
+            type:type
+            }
+            if( parentId){
+              category.parentId=parentId
+            }
+            const updatedCategory= await Category.findOneAndUpdate({_id},category,{new:true})
+            return res.status(201).json({ updatedCategory})
+       }
+
+    }
