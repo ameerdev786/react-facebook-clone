@@ -33,12 +33,12 @@ const productSchema=new mongoose.Schema({
     ],
     reviews:[
         {
-       userId:{type:mongoose.Types.ObjectId,ref:"User"},
+       userId:{type:mongoose.Schema.Types.ObjectId,ref:"User"},
         review:String 
         }
     ],
-    category:{type:mongoose.Types.ObjectId,ref:"Category",required:true},
-    createdBy:{type:mongoose.Types.ObjectId,ref:"User",required:true},
+    category:{type:mongoose.Schema.Types.ObjectId,ref:"Category",required:true},
+    createdBy:{type:mongoose.Schema.Types.ObjectId,ref:"User",required:true},
     updateAt:Date
     
 },{timestamps:true});

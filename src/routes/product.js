@@ -20,5 +20,5 @@ const storage = multer.diskStorage({
   
 
 router.post('/product/create',requireSignin,adminMiddleaware,upload.array('productPicture'),createProduct)
-router.delete( "/product/deleteProductById",requireSignin, adminMiddleaware, deleteProductById);
+router.post("/product/deleteProductById",requireSignin, adminMiddleaware, deleteProductById);
 module.exports=router;

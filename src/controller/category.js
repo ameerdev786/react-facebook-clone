@@ -9,7 +9,7 @@ const Category = require("../model/category");
         sku: slug(req.body.name)
       };
       if (req.file ) {
-        categoryObj.categoryImage= "https://adminapinode.herokuapp.com/public/" + req.file.filename
+        categoryObj.categoryImage= "http://localhost:2000/public/" + req.file.filename
       }
 
       if (req.body.parentId) {
@@ -32,7 +32,7 @@ const Category = require("../model/category");
       }
       for (let cat of category) {
         categoryList.push({
-          _id: cat._id,
+          _id: cat && cat._id,
           name: cat.name,
           sku: cat.sku,
           category: getWithchilds(categories, cat._id),
@@ -84,5 +84,14 @@ const Category = require("../model/category");
             const updatedCategory= await Category.findOneAndUpdate({_id},category,{new:true})
             return res.status(201).json({ updatedCategory})
        }
+
+    }
+
+    exports.deleteCategory=async(req,res)=>{
+      const {id}= req.body.payload;
+      const deleteCategory= await Category.findOneAndDelete({_id:id})
+      if (deleteCategory){
+            res.status(200).json({message:"category removed"})
+      }
 
     }

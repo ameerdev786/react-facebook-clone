@@ -17,7 +17,9 @@ mongoose
     {
       useUnifiedTopology: true,
       useNewUrlParser: true,
+      useCreateIndex: true 
     }
+    
   )
   .then(() => {
     console.log("database is connected");
